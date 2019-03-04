@@ -1,0 +1,17 @@
+{
+    "name": "rain_sunshine_cloud/my-yaf",
+    "authors": [
+        {
+            "name": "RainSunshineCloud",
+            "email": "931035553@qq.com"
+        }
+    ],
+    "require": {
+        "rain_sunshine_cloud/model": "dev-master",
+        "rain_sunshine_cloud/jwt_token": "dev-master",
+        "rain_sunshine_cloud/request": "dev-master",
+        "monolog/monolog": "^1.24"
+    },
+	"minimum-stability": "dev",
+    "prefer-stable": true
+}
