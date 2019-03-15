@@ -23,7 +23,6 @@ class BaseController extends \Yaf\Controller_Abstract
         if (!$this->login) {
             $this->checkLogin();
         }
-        var_dump($this->login);exit;
     }
 
     /**
@@ -45,7 +44,7 @@ class BaseController extends \Yaf\Controller_Abstract
         $loger = [
             'POST'  =>  $request->post(),
             'GET'   =>  $request->get(),
-            'TOKEN' =>  $request->serv('token')['token'],
+            'TOKEN' =>  $request->serv('HTTP_TOKEN')['HTTP_TOKEN'],
         ];
 
         Log::record('[首次请求，记录请求日志]',$loger);
@@ -53,8 +52,8 @@ class BaseController extends \Yaf\Controller_Abstract
 
     protected function checkLogin()
     {
-        $token = Request::instance()->serv(['token'=>''])['token'];
-        $jwt = new JWT();
-        $jwt->decode($token);
+        $token = Request::instance()->serv(['HTTP_TOKEN'=>''])['HTTP_TOKEN'];
+        $this->uid = Response::instance()->decode($token)['user_id'];
+        Response::token(['user_id' => $this->uid]);
     }
 }

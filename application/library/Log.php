@@ -6,9 +6,13 @@ use Monolog\Formatter\LineFormatter;
 
 class Log extends Logger
 {
+	// sql
 	const SQL = 700;
+	// 成功sql
 	const SUCCESS_SQL = 800;
+	// 失败sql
 	const ERROR_SQL = 900;
+	
 	protected static $log = null;
 	protected static $file_path = null;
 	protected static $self_levels = [
@@ -17,11 +21,18 @@ class Log extends Logger
 		900 => 'ERROR_SQL',
 	];
 
+	/**
+	 * 添加等级
+	 */
 	protected static function addLevel()
 	{
 		parent::$levels += self::$self_levels;
 	}
 
+	/**
+	 * 设置文件路径
+	 * @param [type] $file_path [description]
+	 */
 	public static function setFilePath($file_path)
 	{
 		self::$file_path = $file_path;
@@ -43,7 +54,7 @@ class Log extends Logger
 
 		if (!self::$log) {
 			$log = new Log('web');
-			$log->pushProcessor(new UidProcessor());
+			// $log->pushProcessor(new UidProcessor());
 			$stream = new StreamHandler(self::$file_path);
 			$formatter = new LineFormatter();
 			$stream->setFormatter($formatter);
