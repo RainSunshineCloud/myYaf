@@ -56,7 +56,7 @@ class Response extends JWT
      */
     public static function error(string $message,int $code = 600, $data = '') 
     {
-         self::instance()->data($message,$data,$code)->send();
+         self::instance()->data($data,$message,$code)->send();
     }
 
     /**
@@ -130,7 +130,6 @@ class Response extends JWT
      */
     public function data($data,string $msg = '',int $code = 200)
     {
-
         $data = ['data' => $data,'msg' => $msg ,'code' => $code];
         $this->data = $data;
         return $this;
@@ -158,7 +157,6 @@ class Response extends JWT
     {
         // 获取数据
         $data = $this->getContent();
-        
         if ($token && ($this->token['public'] || $this->token['private'])) {     
             $token = $this->encode($this->token['public'],$this->token['private'],$is_first);
             $this->header['token'] = $token;

@@ -11,7 +11,7 @@ use BaseModel;
 
 class User extends Base
 {
- 	protected $table = 'test';
+ 	protected $table = 'user';
 
     /**
      * 获取昵称
@@ -19,9 +19,9 @@ class User extends Base
      * @param  string $field     [description]
      * @return [type]            [description]
      */
-    public function getInfoByNickName(string $nick_name,string $field = '*')
+    public function getInfoByMoble(string $moble,string $field = '*')
     {
-    	return $this->where('nick_name',$nick_name)->field($field)->find();
+    	return $this->where('moble',$moble)->field($field)->find();
     }
 
     /**

@@ -31,14 +31,13 @@ class BaseController extends \Yaf\Controller_Abstract
      */
     protected function optionsResponse()
     {
-    	if($this->getRequest()->isOptions()) {
-            $origin = \Yaf\Application::app()->getConfig()->access['origin'];
-            $origin = $origin ? $origin: '*';
-            header('Access-Control-Allow-Headers:Content-type,X-Auth-Token,X-Auth-UA,Cookies');
-            header('Access-Control-Request-Method:POST,GET');
-            header('Access-Control-Allow-Origin:'.$origin);
-            exit;
-        }
+
+        $origin = \Yaf\Application::app()->getConfig()->access['origin'];
+        $origin = $origin ? $origin: '*';
+        header('Access-Control-Allow-Headers:Content-type,Token,X-Auth-UA,Cookies');
+        header('Access-Control-Request-Method:POST,GET');
+        header('Access-Control-Allow-Origin:'.$origin);
+        header("Access-Control-Expose-Headers : Token");
         Log::setFilePath(sprintf('%s/%s/%s/%s/%s.log',APP_PATH,'logs',$this->getRequest()->module,$this->getRequest()->controller,date("Ymd",$_SERVER['REQUEST_TIME'])));
         $request = Request::instance();
         $loger = [
