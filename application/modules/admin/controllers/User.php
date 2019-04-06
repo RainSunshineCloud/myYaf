@@ -26,4 +26,20 @@ class UserController extends AdminController
 		$info = $user_model->updatePassword($this->uid,$info['password'],Util::encodePassword($params['new_password'],$info['salt']));
 		Response::success($info);
 	}
+
+	/**
+	 * 添加账户
+	 */
+	public function addAction()
+	{
+		$params = Request::instance()->check('password','string','请填写密码',['min' => 6,'max' => 255])->check('moble','string','请输入手机号',['min' => 2])->post('password','moble');
+		$user_model = new User();
+		$res = $user_model->add($params['password'],$params['moble']);
+
+		if (!$res) {
+			Response::error($user_model->error);
+		}
+
+		Response::success('ok');
+	}
 }

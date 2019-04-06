@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "510e38d8828f11002a5539c9dc0289da",
+    "content-hash": "534ae57d4a269d5e32eab018be3cfe1c",
     "packages": [
         {
             "name": "monolog/monolog",
@@ -133,16 +133,16 @@
         },
         {
             "name": "rain_sunshine_cloud/jwt_token",
-            "version": "dev-master",
+            "version": "v1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RainSunshineCloud/jwt_token.git",
-                "reference": "db7ddc1cfcc7c63834bf946332c95aa1020b7d5f"
+                "reference": "ad6bcbe7a10c239f392249d575b31b133cf4d4f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RainSunshineCloud/jwt_token/zipball/db7ddc1cfcc7c63834bf946332c95aa1020b7d5f",
-                "reference": "db7ddc1cfcc7c63834bf946332c95aa1020b7d5f",
+                "url": "https://api.github.com/repos/RainSunshineCloud/jwt_token/zipball/ad6bcbe7a10c239f392249d575b31b133cf4d4f2",
+                "reference": "ad6bcbe7a10c239f392249d575b31b133cf4d4f2",
                 "shasum": ""
             },
             "require": {
@@ -161,7 +161,7 @@
                     "email": "931035553@qq.com"
                 }
             ],
-            "time": "2019-02-18T08:30:31+00:00"
+            "time": "2019-03-05T09:33:59+00:00"
         },
         {
             "name": "rain_sunshine_cloud/model",
@@ -169,12 +169,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/RainSunshineCloud/model.git",
-                "reference": "e4a89600c65b8aa68114c010c444625e29189acd"
+                "reference": "56c1707d50109868a63bf147a3f15a6472c6f21e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RainSunshineCloud/model/zipball/e4a89600c65b8aa68114c010c444625e29189acd",
-                "reference": "e4a89600c65b8aa68114c010c444625e29189acd",
+                "url": "https://api.github.com/repos/RainSunshineCloud/model/zipball/56c1707d50109868a63bf147a3f15a6472c6f21e",
+                "reference": "56c1707d50109868a63bf147a3f15a6472c6f21e",
                 "shasum": ""
             },
             "require": {
@@ -195,20 +195,53 @@
                 }
             ],
             "description": "这是一个model调度类",
-            "time": "2018-12-28T05:49:11+00:00"
+            "time": "2019-03-05T06:49:09+00:00"
         },
         {
-            "name": "rain_sunshine_cloud/request",
-            "version": "dev-master",
+            "name": "rain_sunshine_cloud/php_captcha",
+            "version": "v1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/RainSunshineCloud/request.git",
-                "reference": "81fb1e65c75fbda834e99f15645f3c1689539af0"
+                "url": "https://github.com/RainSunshineCloud/php_captcha.git",
+                "reference": "14dadaf2779b5b395ed173dfebf3c3b82ae8d679"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RainSunshineCloud/request/zipball/81fb1e65c75fbda834e99f15645f3c1689539af0",
-                "reference": "81fb1e65c75fbda834e99f15645f3c1689539af0",
+                "url": "https://api.github.com/repos/RainSunshineCloud/php_captcha/zipball/14dadaf2779b5b395ed173dfebf3c3b82ae8d679",
+                "reference": "14dadaf2779b5b395ed173dfebf3c3b82ae8d679",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "RainSunshineCloud\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "RainSunshineCloud",
+                    "email": "931035553@qq.com"
+                }
+            ],
+            "time": "2018-12-26T04:45:00+00:00"
+        },
+        {
+            "name": "rain_sunshine_cloud/request",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/RainSunshineCloud/request.git",
+                "reference": "628cc48f2a74465141cad905fe1fe3b8de73069b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/RainSunshineCloud/request/zipball/628cc48f2a74465141cad905fe1fe3b8de73069b",
+                "reference": "628cc48f2a74465141cad905fe1fe3b8de73069b",
                 "shasum": ""
             },
             "type": "library",
@@ -225,7 +258,7 @@
                 }
             ],
             "description": "这是一起请求接收参数类",
-            "time": "2019-03-02T09:00:19+00:00"
+            "time": "2019-04-05T08:14:20+00:00"
         },
         {
             "name": "rain_sunshine_cloud/sql",
@@ -265,9 +298,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "rain_sunshine_cloud/model": 20,
-        "rain_sunshine_cloud/jwt_token": 20,
-        "rain_sunshine_cloud/request": 20
+        "rain_sunshine_cloud/model": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

@@ -49,5 +49,19 @@ class User extends Base
         ]);
 
         return $res;
-    }   
+    }
+
+    public function add(string $moble,string $password)
+    {
+        $res = $this->insert([
+            'moble'     => $moble,
+            'password'  => $password,
+        ]);
+
+        if ($res) {
+            return true;
+        }
+
+        return false;
+    } 
 }
