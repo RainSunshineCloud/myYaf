@@ -11,7 +11,8 @@
         "rain_sunshine_cloud/jwt_token": "^1.0",
         "rain_sunshine_cloud/request": "^1.0",
         "monolog/monolog": "^1.24",
-        "rain_sunshine_cloud/php_captcha": "^1.0"
+        "rain_sunshine_cloud/php_captcha": "^1.0",
+        "rain_sunshine_cloud/uploads": "^1.0"
     },
     "autoload": {
         "psr-4": {

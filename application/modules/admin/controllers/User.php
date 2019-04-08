@@ -1,7 +1,6 @@
 <?php 
 
-use RainSunshineCloud\Request;
-use RainSunshineCloud\JWT;
+use RainSunshineCloud\{Upload,Request};
 use \App\Model\User;
 
 class UserController extends AdminController
@@ -12,18 +11,14 @@ class UserController extends AdminController
 	 */
 	public function modifyPasswordAction()
 	{
-		$params = Request::instance()->check('password','string','请填写旧密码',['min' => 6,'max' => 255])
-									->check('new_password','string','请填写新密码,最小长度为8',['min' => 8,'max' => 255])
-									->post(['password','new_password']);
+		$params = Request::instance()->check('password','string','请填写密码',['min' => 6,'max' => 255])
+									->check('id','int','invalid params',['min' => 1])
+									->post(['password','id']);
 		//数据查询
 		$user_model = new User();
-		$info = $user_model->getInfo($this->uid,'password,salt');
-
-		if (!$info || !Util::checkPassword($info['password'],$info['salt'],$params['password'])) {
-			Response::error('用户名密码错误');
-		}
-
-		$info = $user_model->updatePassword($this->uid,$info['password'],Util::encodePassword($params['new_password'],$info['salt']));
+		$info = $user_model->getInfo($params['id'],'password');
+		$salt = "acyz";
+		$info = $user_model->updatePassword($params['id'],$info['password'],Util::encodePassword($params['password'],$salt));
 		Response::success($info);
 	}
 
@@ -32,14 +27,75 @@ class UserController extends AdminController
 	 */
 	public function addAction()
 	{
-		$params = Request::instance()->check('password','string','请填写密码',['min' => 6,'max' => 255])->check('moble','string','请输入手机号',['min' => 2])->post('password','moble');
+
+		$params = Request::instance()->check('password','string','请填写密码',['min' => 6,'max' => 255])
+									->check('header','string','头像上传失败',['min' => 3])
+									->check('moble','string','请输入手机号',['min' => 2])
+									->post(['password','moble','header']);
+
 		$user_model = new User();
-		$res = $user_model->add($params['password'],$params['moble']);
+		$salt = "acyz";
+		$res = $user_model->add($params['moble'],Util::encodePassword($params['password'],$salt),$params['header']);
 
 		if (!$res) {
 			Response::error($user_model->error);
 		}
 
-		Response::success('ok');
+		Response::success();
+	}
+
+	/**
+	 * 列表
+	 * @return [type] [description]
+	 */
+	public function listAction()
+	{
+		$params = Request::instance()->check('page','int','invalid params',['min' => 1])
+									->check('pageSize','int','invalid params',['min' => 1])
+									->post(['page' => 1,'pageSize' => 10]);
+
+		$user_model = new User();
+		$list = $user_model->list('id,moble,create_time,update_time,header',$params['page'],$params['pageSize']);
+		$res = $user_model->count('id','total')->find();
+		response::success([
+			'list' => $list,
+			'total' => $res['total'],
+			'page' => $params['page'],
+			'pageSize'	=> $params['pageSize'],
+		]);
+	}
+
+	/**
+	 * 上传图片
+	 * @return [type] [description]
+	 */
+	public function uploadImgAction()
+	{	
+		Request::setDataType(1);
+		$type = Request::instance()->check('type','string','invalid params',['min' => 3])->post(['type'])['type'];
+	    $file = new Upload();
+		Upload::setBasePath(APP_PATH.'/public/upload/');
+	    $res = $file->setDir($type)->setValidType(['jpg','png'])->setMaxSize(100000)->upload('file')->getFilePath();
+	    response::success('upload/'.$res);
+	}
+
+	/**
+	 * 修改信息
+	 * @return [type] [description]
+	 */
+	public function modifyAction()
+	{
+		$params = Request::instance()->check('id','int','invalid params',['min' => 1])
+									 ->check('moble','string','手机号错误',['min' => 3])
+									 ->check('header','string','头像上传失败',['min' => 3])
+									 ->post(['id','moble','header']);
+
+		$user_model = new User();
+		$res = $user_model->updateInfo($params['id'],$params['moble'],$params['header']);
+		if (!$res) {
+			response::error("修改失败");
+		}
+
+		response::success();
 	}
 }

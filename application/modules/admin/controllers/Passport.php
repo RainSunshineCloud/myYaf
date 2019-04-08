@@ -15,6 +15,7 @@ class PassportController extends AdminController
                                      ->check('code','string','请填写验证码')
                                      ->check('code',["Validate",'checkPicCode'],'验证码错误')
                                      ->post(['moble','password','code']);
+
         //数据查询
         $user_model = new User();
         $info = $user_model->getInfoByMoble($params['moble'],'password,id,moble');

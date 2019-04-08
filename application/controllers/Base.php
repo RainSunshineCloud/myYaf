@@ -58,6 +58,6 @@ class BaseController extends \Yaf\Controller_Abstract
     {
         $token = Request::instance()->serv(['HTTP_TOKEN'=>''])['HTTP_TOKEN'];
         $this->uid = Response::instance()->decode($token)['user_id'];
-        Response::token(['user_id' => $this->uid]);
+        Response::instance()->token(['user_id' => $this->uid]);
     }
 }

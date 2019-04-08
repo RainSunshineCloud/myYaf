@@ -42,20 +42,29 @@ class User extends Base
      * @param  string $new_password [description]
      * @return [type]               [description]
      */
-    public function updatePassword(string $user_id,string $old_password,string $new_password)
+    public function updatePassword(string $user_id,string $old_password,string $password)
     {
-        $res = $this->where('id','=',$user_id)->where('password','=',$old_password)->update([
-            'password' => $new_password
-        ]);
 
+        $res = $this->where('id',$user_id)->where('password',$old_password)->update([
+            'password' => $password,
+            'update_time' => $_SERVER['REQUEST_TIME'],
+        ]);
         return $res;
     }
 
-    public function add(string $moble,string $password)
+    /**
+     * 添加用户
+     * @param string $moble    [description]
+     * @param string $password [description]
+     */
+    public function add(string $moble,string $password,string $header)
     {
         $res = $this->insert([
-            'moble'     => $moble,
-            'password'  => $password,
+            'moble'         => $moble,
+            'password'      => $password,
+            'header'        => $header,
+            'update_time'   => $_SERVER['REQUEST_TIME'],
+            'create_time'   => $_SERVER['REQUEST_TIME']
         ]);
 
         if ($res) {
@@ -63,5 +72,27 @@ class User extends Base
         }
 
         return false;
-    } 
+    }
+
+    /**
+     * 用户列表
+     * @param  string $field [description]
+     * @return [type]        [description]
+     */
+    public function list(string $field = "*", int $page = 1, int $pageSize = 10)
+    {
+        return $this->field($field)->limit($pageSize,($page - 1) * $pageSize)->select();
+    }
+
+    /**
+     * 更新用户信息
+     * @param  int    $id     [description]
+     * @param  string $moble  [description]
+     * @param  string $header [description]
+     * @return [type]         [description]
+     */
+    public function updateInfo(int $id, string $moble, string $header)
+    {
+        return $this->where('id',$id)->update(['moble' => $moble,'header' => $header,'update_time' => $_SERVER['REQUEST_TIME']]);
+    }
 }

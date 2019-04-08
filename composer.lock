@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "534ae57d4a269d5e32eab018be3cfe1c",
+    "content-hash": "81efdb3a69da65bb0551e7cde0359d77",
     "packages": [
         {
             "name": "monolog/monolog",
@@ -292,6 +292,38 @@
             ],
             "description": "这是一个关系型数据库的Sql类",
             "time": "2018-12-28T03:36:47+00:00"
+        },
+        {
+            "name": "rain_sunshine_cloud/uploads",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/RainSunshineCloud/uploads.git",
+                "reference": "e639f2c172fe1864d5372ee831a1f8c78b8a69e5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/RainSunshineCloud/uploads/zipball/e639f2c172fe1864d5372ee831a1f8c78b8a69e5",
+                "reference": "e639f2c172fe1864d5372ee831a1f8c78b8a69e5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "RainSunshineCloud\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "RainSunshineCloud",
+                    "email": "931035553@qq.com"
+                }
+            ],
+            "time": "2018-12-26T04:29:08+00:00"
         }
     ],
     "packages-dev": [],

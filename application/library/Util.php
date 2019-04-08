@@ -77,8 +77,7 @@ class Util
         return '';
     }
 
-
-        /**
+    /**
 	 * 用户ID加密
 	 *
 	 * @param  [type] $user_id  [description]

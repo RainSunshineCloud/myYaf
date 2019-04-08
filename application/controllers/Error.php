@@ -1,6 +1,7 @@
 <?php
 
 use RainSunshineCloud\JWTException;
+use RainSunshineCloud\UploadException;
 use RainSunshineCloud\RequestException;
 use RainSunshineCloud\CaptchaException;
 
@@ -10,6 +11,9 @@ class ErrorController extends \Yaf\Controller_Abstract
 	{
 		switch (true) {
 			case $exception instanceof RequestException:
+				Response::error($exception->getMessage());
+				break;
+			case $exception instanceof UploadException:
 				Response::error($exception->getMessage());
 				break;
 			case $exception instanceof JWTException:
