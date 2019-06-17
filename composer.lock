@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "81efdb3a69da65bb0551e7cde0359d77",
+    "content-hash": "1ce79ba2a34cfd8711f9752fc30d76bb",
     "packages": [
         {
             "name": "monolog/monolog",
@@ -169,12 +169,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/RainSunshineCloud/model.git",
-                "reference": "56c1707d50109868a63bf147a3f15a6472c6f21e"
+                "reference": "8be23b2e188da66520380d2683c74c7cce862725"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RainSunshineCloud/model/zipball/56c1707d50109868a63bf147a3f15a6472c6f21e",
-                "reference": "56c1707d50109868a63bf147a3f15a6472c6f21e",
+                "url": "https://api.github.com/repos/RainSunshineCloud/model/zipball/8be23b2e188da66520380d2683c74c7cce862725",
+                "reference": "8be23b2e188da66520380d2683c74c7cce862725",
                 "shasum": ""
             },
             "require": {
@@ -195,7 +195,7 @@
                 }
             ],
             "description": "这是一个model调度类",
-            "time": "2019-03-05T06:49:09+00:00"
+            "time": "2019-04-30T15:52:10+00:00"
         },
         {
             "name": "rain_sunshine_cloud/php_captcha",
@@ -266,12 +266,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/RainSunshineCloud/sql.git",
-                "reference": "3dfec9297e453e710cd68266fd59464af3103f1b"
+                "reference": "387b51945880c674024e4805aa0ff0d949721cc3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RainSunshineCloud/sql/zipball/3dfec9297e453e710cd68266fd59464af3103f1b",
-                "reference": "3dfec9297e453e710cd68266fd59464af3103f1b",
+                "url": "https://api.github.com/repos/RainSunshineCloud/sql/zipball/387b51945880c674024e4805aa0ff0d949721cc3",
+                "reference": "387b51945880c674024e4805aa0ff0d949721cc3",
                 "shasum": ""
             },
             "require": {
@@ -291,7 +291,7 @@
                 }
             ],
             "description": "这是一个关系型数据库的Sql类",
-            "time": "2018-12-28T03:36:47+00:00"
+            "time": "2019-04-30T03:44:14+00:00"
         },
         {
             "name": "rain_sunshine_cloud/uploads",
@@ -330,6 +330,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "rain_sunshine_cloud/sql": 20,
         "rain_sunshine_cloud/model": 20
     },
     "prefer-stable": true,

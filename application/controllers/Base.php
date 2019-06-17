@@ -6,12 +6,16 @@
  * @author falcom520@gmail.com
  */
 use RainSunshineCloud\JWT;
+use RainSunshineCloud\JWTException;
 use RainSunshineCloud\Request;
 class BaseController extends \Yaf\Controller_Abstract
 {
+    const AuthErrCode = 602;
+    const CaptchaErrCode = 601;
 
-	protected $login = false;
-	protected $user_id = null;
+    //登录
+	protected $logined = false;
+	protected $uid = null;
     /**
      * 初始化
      * 
@@ -21,7 +25,7 @@ class BaseController extends \Yaf\Controller_Abstract
     {
         Request::setDataType(2);
         $this->optionsResponse();
-        if (!$this->login) {
+        if (!$this->logined) {
             $this->checkLogin();
         }
     }
@@ -43,7 +47,7 @@ class BaseController extends \Yaf\Controller_Abstract
         if ($this->getRequest()->isOptions()) {
             exit;
         }
-        Log::setFilePath(sprintf('%s/%s/%s/%s/%s.log',APP_PATH,'logs',$this->getRequest()->module,$this->getRequest()->controller,date("Ymd",$_SERVER['REQUEST_TIME'])));
+        Log::setFilePath(sprintf('%s/%s/%s/%s.log',LogFilePath,$this->getRequest()->module,$this->getRequest()->controller,date("Ymd",$_SERVER['REQUEST_TIME'])));
         $request = Request::instance();
         $loger = [
             'POST'  =>  $request->post(),

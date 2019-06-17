@@ -1,7 +1,6 @@
 <?php
 namespace App\Model;
 use RainSunshineCloud\ModelException;
-use BaseModel;
 
 /**
  * @name SampleModel

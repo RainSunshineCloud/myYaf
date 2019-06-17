@@ -1,11 +1,9 @@
 <?php
 namespace App\Model;
-use RainSunshineCloud\ModelException;
-use BaseModel;
 
 /**
- * @name SampleModel
- * @desc sample数据获取类, 可以访问数据库，文件，其它系统等
+ * @name User
+ * @desc 用户列表
  * @author Administrator
  */
 
@@ -70,7 +68,7 @@ class User extends Base
         if ($res) {
             return true;
         }
-
+        $this->error = $this->getLastSql(true);
         return false;
     }
 

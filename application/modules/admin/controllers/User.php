@@ -75,7 +75,7 @@ class UserController extends AdminController
 		$type = Request::instance()->check('type','string','invalid params',['min' => 3])->post(['type'])['type'];
 	    $file = new Upload();
 		Upload::setBasePath(APP_PATH.'/public/upload/');
-	    $res = $file->setDir($type)->setValidType(['jpg','png'])->setMaxSize(100000)->upload('file')->getFilePath();
+	    $res = $file->setDir($type)->setValidType(['jpg','jpeg','png'])->setMaxSize(100000)->upload('file')->getFilePath();
 	    response::success('upload/'.$res);
 	}
 

@@ -64,4 +64,19 @@ class Log extends Logger
 
         return $log->log($level,$msg,$content);
 	}
+
+	public static function errors(string $msg,array $content = [])
+	{
+		return self::record($msg,$content,Log::ERROR);
+	}
+
+	public static function errorSql(string $msg,array $content = [])
+	{
+		return self::record($msg,$content,Log::ERROR_SQL);
+	}
+
+	public static function sucSql(string $msg,array $content = [])
+	{
+		return self::record($msg,$content,Log::SUCCESS_SQL);
+	}
 }

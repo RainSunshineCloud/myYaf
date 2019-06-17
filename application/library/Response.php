@@ -15,6 +15,9 @@ class Response extends JWT
         'private' => [],
     ];
 
+    protected $returnToken = True;
+    protected $firstLogin = False;
+
     protected static $self;
     /**
      * 响应数据
@@ -54,7 +57,7 @@ class Response extends JWT
      * @param  string      $data    [description]
      * @return [type]               [description]
      */
-    public static function error(string $message,int $code = 600, $data = '') 
+    public static function error(string $message,int $code = 500, $data = '') 
     {
          self::instance()->data($data,$message,$code)->send();
     }
@@ -153,28 +156,24 @@ class Response extends JWT
      *
      * @return [type] [description]
      */
-    public function send(bool $token = true , bool $is_first = false)
+    public function send()
     {
         // 获取数据
         $data = $this->getContent();
-        if ($token && ($this->token['public'] || $this->token['private'])) {     
-            $token = $this->encode($this->token['public'],$this->token['private'],$is_first);
+        if ($this->returnToken && ($this->token['public'] || $this->token['private'])) {
+            $token_config = \Yaf\Application::app()->getConfig()->token;
+            $this->expire($token_config->expire);
+            $this->refresh($token_config->refresh);
+            $token = $this->encode($this->token['public'],$this->token['private'],$this->firstLogin);
             $this->header['token'] = $token;
         }
 
-        foreach($this->header as $name => $val)
-        {
-            if (is_null($val)) {
-                header($name);
-            }
-            else {
-                header($name . ':' . $val);
-            }
+        foreach($this->header as $name => $val) {
+            is_null($val) ? header($name) : header($name . ':' . $val);
         }
-
+    
         echo $data;
-        
-        if(function_exists('fastcgi_finish_request')){
+        if (function_exists('fastcgi_finish_request')) {
             fastcgi_finish_request();
         }
         Log::record('响应数据',['data' =>$data]);
@@ -186,7 +185,7 @@ class Response extends JWT
      *
      * @return [type] [description]
      */
-    public function getContent()
+    protected function getContent()
     {
         switch ($this->type)
         {
@@ -202,7 +201,7 @@ class Response extends JWT
     }
 
     /**
-     * 书数据转换为HTML数据
+     * 将数据转换为HTML数据
      * @return [type] [description]
      */
     protected function toHTML()
@@ -224,5 +223,17 @@ class Response extends JWT
         }
 
         return $data;
+    }
+
+    public function firstLogin($first)
+    {
+        $this->firstLogin = $first;
+        return $this;
+    }
+
+    public function returnToken(bool $return)
+    {
+        $this->returnToken = $return;
+        return $this;
     }
 }
